@@ -1,9 +1,9 @@
 class Solution {
     public int compress(char[] chars) {
-        StringBuilder sb=new StringBuilder();
+       
         int n=chars.length;
         int i=0;
-       
+       int index=0;
         while(i<n)
         {
             char curr=chars[i];
@@ -13,17 +13,15 @@ class Solution {
                 i++;
                 count++;
              }
-             sb.append(curr);
+            chars[index++]=curr;
              if(count>1)
              {
-                sb.append(count);
+              String countStr=Integer.toString(count);
+              for(char c:countStr.toCharArray()){
+                chars[index++]=c;
+              }
              }
-             for(int j=0;j<sb.length();j++)
-             {
-                  chars[j]=sb.charAt(j);
-             }
-
         }
-        return sb.length();
+        return index;
     }
 }
